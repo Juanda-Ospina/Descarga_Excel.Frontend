@@ -1,0 +1,5 @@
+{
+  "name": "PILA Employee Query System",
+  "description": "A web application for querying and downloading employee information from PILA services.",
+  "requestFramePermissions": []
+}
