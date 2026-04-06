@@ -12,13 +12,21 @@ export const PaginaConsulta = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <header className="mb-8">
+    
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-800 flex justify-center items-center">
+      <div className="w-full max-w-xl">
+
+      <header className="mb-10 text-center flex flex-col items-center">
+      <img
+      src="/Logo_Crystal.png" 
+      alt="Crystal SAS" 
+      className="h-32 w-auto mb-4 object-contain mx-auto" 
+      />
         <h1 className="text-3xl font-bold text-gray-900">Gestion de Reporte</h1>
-        <p className="text-gray-600">Gestión de reportes y consulta de secciones operativas.</p>
+        <p className="text-gray-600">Gestión de reportes y consulta por secciones operativas.</p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100">
         {/* Descarga de Reporte */}
         <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
           <div className="flex items-center gap-2 mb-6 text-blue-600">
@@ -40,7 +48,7 @@ export const PaginaConsulta = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Código de Sección</label>
-              <select {...register('codigoSeccion')} placeholder="Ej. 101" className="w-full border border-gray-300 rounded-lg p-2.5" required>
+              <select {...register('codigoSeccion')} className="w-full border border-gray-300 rounded-lg p-2.5" required>
                 <option value="">Seleccione una sección</option>  
                 <option value="7">Empaque manual</option>
                 {/* <option value="8">Sección...</option>
@@ -91,6 +99,7 @@ export const PaginaConsulta = () => {
             <p className="text-gray-400 text-center py-8">Ingresa un nombre para buscar secciones.</p>
           </div>
         </section> */}
+      </div>
       </div>
     </div>
   );

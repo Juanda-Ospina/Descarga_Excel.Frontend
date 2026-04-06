@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { ParametrosConsulta } from '../../../shared/types';
 import { obtenerReporteEmpleados } from '../services/servicioEmpleados';
-
+ 
 export const useConsultaEmpleados = () => {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+ 
   const descargarReporte = async (params: ParametrosConsulta) => {
     setCargando(true);
     setError(null);
     try {
-      const response = await obtenerReporteEmpleados(params);
+      const paramsParaBackend = {
+        FechaInicial: params.fechaInicio,
+        FechaFinal: params.fechaFin,
+        CodigoSeccion: Number(params.codigoSeccion),
+        TipoArchivo: Number(params.tipoArchivo),
+      }
+      const response = await obtenerReporteEmpleados(paramsParaBackend as any);
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -24,6 +30,6 @@ export const useConsultaEmpleados = () => {
       setCargando(false);
     }
   };
-
+ 
   return { descargarReporte, cargando, error };
 };
