@@ -2,7 +2,7 @@ import apiClient from '../../../infrastructure/api/apiClient';
 import { ParametrosConsulta, RespuestaConsulta } from '../../../shared/types';
 
 export const obtenerReporteEmpleados = async (params: ParametrosConsulta): Promise<RespuestaConsulta> => {
-  const response = await apiClient.get('/DescargarExcel', {
+  const response = await apiClient.get('/api/DescargarExcel', {
     params,
     responseType: 'blob',
   });

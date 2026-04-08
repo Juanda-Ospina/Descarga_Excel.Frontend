@@ -1,0 +1,101 @@
+.modal {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: var(--sombra) !important;
+  padding: 24px 20px !important;
+  width: 100% !important;
+  max-width: 92vw !important;
+  max-height: 94vh !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  overscroll-behavior: contain !important;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 12px)) !important;
+  text-align: center !important;
+  position: relative !important;
+  font-family: var(--fuente) !important;
+  will-change: transform, opacity;
+  z-index: 1000!important;
+}
+
+.modalError {
+  position: relative;
+  max-width: 460px !important;
+  width: min(92vw, 460px) !important;
+  max-height: 90vh;
+  padding: 40px 32px 32px !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.2rem 0.8rem;
+  margin-top: 0.35rem;
+  background: var(--cr-bg);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+  border-radius: var(--cr-radius);
+  animation: fadeInScale 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--cr-shadow);
+  max-height: calc(90vh - 80px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  z-index: 99999; 
+}
+
+.titleMain {
+  text-align: center;
+  font-size: 1.5rem; 
+  line-height: 2rem;
+  font-weight: 500; 
+  color: #111827; 
+  margin: 0;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.875rem; 
+  font-weight: 500; 
+  color: #374151; 
+  margin-bottom: 0.25rem; 
+}
+
+.codigoError {
+  text-align: center;
+  font-size: 0.875rem; 
+  color: #6b7280; 
+  margin-top: -0.25rem;
+}
+
+.btnSubmit {
+  width: 100%;
+  background-color: #2563eb; 
+  color: #ffffff; 
+  font-weight: 600; 
+  padding-top: 0.625rem; 
+  padding-bottom: 0.625rem; 
+  border-radius: 0.5rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; 
+  transition: background-color 0.2s ease-in-out; 
+  border: none;
+  cursor: pointer;
+}
