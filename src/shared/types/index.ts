@@ -42,3 +42,8 @@ export interface ModalErrorProps {
   mostrarCerrar?: boolean
   onClose: () => void
 }
+
+export interface RespuestaSeccion {
+  coSeccion: number;
+  deSeccion: string;
+}

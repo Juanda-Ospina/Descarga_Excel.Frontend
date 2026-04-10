@@ -33,16 +33,39 @@ export const useConsultaEmpleados = () => {
       link.remove();
 
     } catch (err: any) {
-      let mensajeBack = '';
-      
-      if (err.response.data instanceof Blob) {
-        mensajeBack = err.response.data?.message || err.response.data || "Error interno del servidor";
+      let mensajeBack = 'Error inesperado al descargar el reporte.';
+
+      if (err.response) {
+        setCodigoError(err.response.status);
+
+        if (err.response.data instanceof Blob) {
+          try {
+            
+            const textoError = await err.response.data.text();
+            
+            try {
+              
+              const errorJson = JSON.parse(textoError);
+              
+              mensajeBack = errorJson.message 
+                         || errorJson.errors 
+                         || "Error de validación en el servidor (400)";
+            } catch (jsonError) {
+              mensajeBack = textoError || "Error en la petición";
+            }
+          } catch (e) {
+            mensajeBack = "Error al procesar la respuesta del servidor.";
+          }
+        } else {
+
+          mensajeBack = err.response.data?.message || err.response.data || "Error de solicitud (400)";
+
+        }
       } else if (err.request) {
         mensajeBack = "No se pudo establecer conexión con el servidor.";
       } else {
         mensajeBack = err.message;
       }
-
       setMjError(typeof mensajeBack === 'string' ? mensajeBack : JSON.stringify(mensajeBack));
       setModalAbierto(true); 
 

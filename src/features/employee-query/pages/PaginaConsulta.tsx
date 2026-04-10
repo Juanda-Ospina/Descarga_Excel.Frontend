@@ -1,28 +1,32 @@
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { useConsultaEmpleados , } from '../hooks/useConsultaEmpleados';
 import { ParametrosConsulta } from '../../../shared/types';
 import { Download, Search } from 'lucide-react';
-import React from 'react';
-import ModalError from '@/src/shared/Components/Modales/ModalError';
+import React, { useState } from 'react';
+import ModalError from '@/src/shared/Components/Modales/ModalError/ModalError';
 import styles from './PaginaConsulta.module.css';
+import { data } from 'react-router-dom';
+import { obtenerSecciones } from '../services/servicioSecciones';
+import { useConsultaSecciones } from '../hooks/useConsultaSecciones';
 
 
 export const PaginaConsulta = () => {
   const { register, handleSubmit } = useForm<ParametrosConsulta>();
   const { descargarReporte, cargando, error , modalAbierto, setModalAbierto, mjError } = useConsultaEmpleados();
-  const [mensajeError, setMensajeError] = React.useState('');
+  const { secciones, cargandoSecciones, errorSecciones } = useConsultaSecciones();
+  const [mensajeError, setMensajeError] = useState('');
+ 
   
   const onSubmit = async (data: ParametrosConsulta) => {
     try {
     const respuesta = await descargarReporte(data);
-    console.log(respuesta);
 
     } catch (error) {
-      console.log('catch');
       setMensajeError('Error al descargar');
       setModalAbierto(true);
     }
   };
+
 
   return (
     
@@ -63,7 +67,11 @@ export const PaginaConsulta = () => {
               <label className={styles.formLabel}>Código de Sección</label>
               <select {...register('codigoSeccion')} className={styles.formControl} required>
                 <option value="">Seleccione una sección</option>  
-                <option value="7">Empaque</option>
+                {secciones.map((seccion) => (
+                  <option value={seccion.coSeccion}>
+                    {seccion.deSeccion}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -71,8 +79,9 @@ export const PaginaConsulta = () => {
               <label className={styles.formLabel}>Tipo de Archivo</label>
               <select {...register('tipoArchivo')} className={styles.formControl} required>
                 <option value="">Seleccione un formato</option>
-                <option value="1">Informe Primeras</option>
-                <option value="2">Informe Segundas</option>
+                <option value="1">INFORME PRIMERAS</option>
+                <option value="2">INFORME SEGUNDAS</option>
+                <option value="3">INFORME PAROS</option>
               </select>
             </div>
 
